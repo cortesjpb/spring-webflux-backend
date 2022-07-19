@@ -7,4 +7,6 @@ import reactor.core.publisher.Mono;
 public interface ProductService {
     Mono<Product> save(Product product);
     Flux<Product> getAll();
+    Flux<Product> findByName(String name);
+    Flux<Product> findByNameContaining(String name);
 }

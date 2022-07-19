@@ -25,6 +25,12 @@ public class ProductController {
         return this.productService.getAll();
     }
 
+    @GetMapping(value = "/getProduct/", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_EVENT_STREAM_VALUE})
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<Product> getProductByName(@RequestParam(name = "name", defaultValue = "") String name) {
+        return this.productService.findByNameContaining(name);
+    }
+
     @PostMapping(value = "/createProduct", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_EVENT_STREAM_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Product> createProduct(@RequestBody ProductDTO productDTO) {
@@ -33,4 +39,6 @@ public class ProductController {
         newProduct.setDescription(productDTO.getDescription());
         return this.productService.save(newProduct);
     }
+
+
 }

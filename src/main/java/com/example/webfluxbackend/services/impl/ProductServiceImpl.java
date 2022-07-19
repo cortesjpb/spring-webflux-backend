@@ -22,4 +22,11 @@ public class ProductServiceImpl implements ProductService {
     public Flux<Product> getAll() {
         return this.productRepository.findAll();
     }
+
+    public Flux<Product> findByName(String name) {
+        return this.productRepository.findByName(name);
+    }
+    public Flux<Product> findByNameContaining(String name) {
+        return this.productRepository.findByNameContaining(name);
+    }
 }
